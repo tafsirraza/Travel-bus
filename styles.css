@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    background-color: #87CEEB; /* Sky blue background */
+    overflow: hidden;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.road {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    height: 200px;
+    background: #333; /* Dark gray road */
+    box-shadow: 0 -20px 30px rgba(0, 0, 0, 0.5); /* Adds depth to the road */
+}
+
+.road:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: repeating-linear-gradient(
+        to right,
+        #fff 0%,
+        #fff 20%,
+        transparent 20%,
+        transparent 40%
+    ); /* Dotted line in the middle of the road */
+    transform: translateY(-50%);
+}
+
+.bus {
+    position: absolute;
+    bottom: 60px;
+    left: -300px; /* Start off-screen */
+    width: 300px;
+    height: 150px;
+    background-color: #FF8C00; /* Orange bus color */
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    animation: drive 8s linear infinite;
+}
+
+.windows {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 260px;
+    height: 60px;
+    background-color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.windows:before,
+.windows:after {
+    content: '';
+    width: 20%;
+    height: 100%;
+    background-color: #87CEEB; /* Window blue color */
+}
+
+.door {
+    position: absolute;
+    bottom: 10px;
+    left: 200px;
+    width: 40px;
+    height: 90px;
+    background-color: #FFF;
+    border-left: 5px solid #FF8C00; /* Door border color */
+}
+
+.wheel {
+    position: absolute;
+    bottom: -25px;
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    border-radius: 50%;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    animation: spin 1s linear infinite;
+}
+
+.front-wheel {
+    left: 40px;
+}
+
+.back-wheel {
+    right: 40px;
+}
+
+@keyframes drive {
+    0% {
+        left: -300px; /* Start off-screen */
+    }
+    50% {
+        left: calc(100% + 300px); /* Move off-screen to the right */
+    }
+    100% {
+        left: -300px; /* Reset position to start again */
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
